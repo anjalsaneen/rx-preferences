@@ -75,7 +75,7 @@ final class RealPreference<T> implements Preference<T> {
     checkNotNull(value, "value == null");
     SharedPreferences.Editor editor = preferences.edit();
     adapter.set(key, value, editor);
-    editor.apply();
+    editor.commit();
   }
 
   @Override public boolean isSet() {
@@ -83,7 +83,7 @@ final class RealPreference<T> implements Preference<T> {
   }
 
   @Override public synchronized void delete() {
-    preferences.edit().remove(key).apply();
+    preferences.edit().remove(key).commit();
   }
 
   @Override @CheckResult @NonNull public Observable<T> asObservable() {
